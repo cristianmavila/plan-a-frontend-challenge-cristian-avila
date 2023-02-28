@@ -1,0 +1,12 @@
+### react ###
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+### NextJS ###
+# Next build dir
+.next/
+
+node_modules
