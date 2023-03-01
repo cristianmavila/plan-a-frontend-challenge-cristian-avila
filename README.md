@@ -23,3 +23,7 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+FYI For the login form use the username and password from the react-challenge.pdf
+
+Live version on Vercel https://plan-a-frontend-challenge-cristian-avila-a7cgnpe7h.vercel.app/
