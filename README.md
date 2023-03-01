@@ -10,7 +10,7 @@ Create a file .env.local on root folder with those values
 
 ```bash
 TMDB_API=https://api.themoviedb.org/3
-TMDB_API_KEY=[HERE YOU HAVE TO APP THE API KEY]
+TMDB_API_KEY=[HERE YOU HAVE TO ADD THE API KEY]
 TMDB_IMG_PATH=http://image.tmdb.org/t/p/w342
 ```
 
