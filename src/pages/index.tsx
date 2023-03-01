@@ -17,7 +17,7 @@ export default function HomePage() {
   }, [username]);
 
   useEffect(() => {
-    if (isMounted()) {
+    if (isMounted() && !!username) {
       fetchLatest(pagination.page);
     }
   }, []);
