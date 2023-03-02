@@ -9,6 +9,7 @@ import {
 } from "./types";
 import { getUserLocalStorage, setUserLocalStorage } from "./utils";
 import { useToast } from "@chakra-ui/react";
+import Router from "next/router";
 
 export const AuthenticationContext = createContext<AuthenticationContextProps>(
   {} as AuthenticationContextProps
@@ -64,6 +65,7 @@ export const AuthenticationProvider = ({ children }: AuthenticationProviderProps
       isClosable: true,
       position: "top-right",
     });
+    Router.push("/login");
   }, []);
 
   useEffect(() => {

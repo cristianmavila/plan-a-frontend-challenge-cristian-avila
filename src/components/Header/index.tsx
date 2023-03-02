@@ -27,8 +27,14 @@ export default function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
   const isDesktop = useBreakpointValue({ base: false, lg: true });
   const LoggedUser = () => (
-    <Box marginY={"4"} textAlign={"center"} color={"white"}>
-      <Text fontWeight={"bold"}>{username}</Text>
+    <Box
+      marginY={"4"}
+      textAlign={"center"}
+      color={{ base: colorMode === "light" ? "black" : "white", lg: "white" }}
+    >
+      <Text as={"strong"} fontWeight={"bold"}>
+        {username}
+      </Text>
     </Box>
   );
   const LogoutButton = () => <Button onClick={() => signOut()}>Logout</Button>;
@@ -65,7 +71,7 @@ export default function Header() {
                 />
                 <Drawer placement="right" onClose={onClose} isOpen={isOpen} size={"full"}>
                   <DrawerOverlay />
-                  <DrawerContent>
+                  <DrawerContent bg={colorMode === "light" ? "white" : "blue.900"}>
                     <DrawerBody
                       paddingTop={10}
                       alignItems={"center"}

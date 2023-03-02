@@ -1,35 +1,38 @@
-import Router from "next/router";
 import { useEffect } from "react";
-import Layout from "@/components/Layout";
-import { useAuthentication } from "@/contexts/AuthenticationProvider/useAuthentication";
-import { useMovies } from "@/contexts/MoviesProvider/useMovies";
-import MoviesList from "@/components/MoviesList";
+import dynamic from "next/dynamic";
 import { Container, Heading } from "@chakra-ui/react";
+import Layout from "@/components/Layout";
+import MoviesList from "@/components/MoviesList";
 import { useIsMounted } from "@/contexts/AuthenticationProvider/utils";
+import { useMovies } from "@/contexts/MoviesProvider/useMovies";
+import withAuthentication from "@/contexts/AuthenticationProvider/withAuthentication";
+import Head from "next/head";
+import { useAuthentication } from "@/contexts/AuthenticationProvider/useAuthentication";
 
-export default function HomePage() {
-  const { fetchLatest, movies, pagination, isLoading } = useMovies();
+const HomePage = () => {
   const { username } = useAuthentication();
+  const { fetchLatest, movies, pagination, isLoading } = useMovies();
   const isMounted = useIsMounted();
 
   useEffect(() => {
-    if (!username) Router.push("/login");
+    if (isMounted() && !!username) fetchLatest(pagination.page);
   }, [username]);
 
-  useEffect(() => {
-    if (isMounted() && !!username) {
-      fetchLatest(pagination.page);
-    }
-  }, []);
-
   return (
-    <Layout>
-      <Container maxW={"container.xl"} py={10}>
-        <Heading as={"h2"} py={2} size={"xl"} mb={5}>
-          Latest movies
-        </Heading>
-        <MoviesList data={movies} isLoading={isLoading} />
-      </Container>
-    </Layout>
+    <>
+      <Head>
+        <title>Latest movies</title>
+      </Head>
+      <Layout>
+        <Container maxW={"container.xl"} py={10}>
+          <Heading py={2} size={"xl"} mb={5}>
+            Latest movies
+          </Heading>
+          <MoviesList data={movies} isLoading={isLoading} />
+        </Container>
+      </Layout>
+    </>
   );
-}
+};
+
+export default withAuthentication(HomePage);

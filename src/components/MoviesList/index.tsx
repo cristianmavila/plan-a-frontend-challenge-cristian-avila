@@ -45,7 +45,7 @@ export default function MoviesList({ data, isLoading }: MoviesListProps) {
                 {vote_average}
               </Box>
             </Box>
-            <Heading as={"h2"} py={3} size={"sm"}>
+            <Heading py={3} size={"sm"}>
               {title}
             </Heading>
           </Box>
